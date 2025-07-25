@@ -1,44 +1,43 @@
 import { expect } from 'expect-webdriverio';
+import { YouTubeLocators } from '../specs/locator/youtube.locator';
+
 
 describe('WebdriverIO and Appium, when interacting with youtube,', () => {
 
     it('should be youtube', async () => {
-        await $('//android.widget.ImageView[@content-desc="Search"]').click()
-        await expect('//android.widget.ImageView[@content-desc="Search"]').toBeClickable()
+        await $(YouTubeLocators.searchIcon).click();
+        await expect($(YouTubeLocators.searchIcon)).toBeClickable();
     });
 
     it('should type 4eve into search box', async () => {
-        await $('//android.widget.EditText[@resource-id="com.google.android.youtube:id/search_edit_text"]').addValue('4eve situationship');
-        await expect ('//android.widget.EditText[@resource-id="com.google.android.youtube:id/search_edit_text"]').toHaveText('4eve');
-        
+        await $(YouTubeLocators.searchInput).addValue('4eve situationship');
+        await expect($(YouTubeLocators.searchInput)).toHaveText('4eve');
     });
 
     it('should click on 4eve keyword', async () => {
-        await $('(//android.widget.ImageView[@resource-id="com.google.android.youtube:id/search_type_icon"])[1]').click()
-        await expect('(//android.widget.ImageView[@resource-id="com.google.android.youtube:id/search_type_icon"])[1]').toBeClickable()
+        await $(YouTubeLocators.firstKeywordResult).click();
+        await expect($(YouTubeLocators.firstKeywordResult)).toBeClickable();
     });
 
     it('should click on video thumbnail', async () => {
-  await $('//android.view.ViewGroup[@content-desc="4EVE - Situationship | Official MV - 3 minutes, 30 seconds - Go to channel - 4EVE - 15 million views - 1 year ago - play video"]/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView[1]').click();
-  await expect('//android.view.ViewGroup[@content-desc="4EVE - Situationship | Official MV - 3 minutes, 30 seconds - Go to channel - 4EVE - 15 million views - 1 year ago - play video"]/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView[1]').toBeClickable()
-        await browser.pause(20000);
+        await $(YouTubeLocators.firstVideoThumbnail).click();
+        await expect($(YouTubeLocators.firstVideoThumbnail)).toBeClickable();
+        await browser.pause(15000);
     });
-    
-    it('should click on video sceen', async () => {
-  await $('//android.view.ViewGroup[@resource-id="com.google.android.youtube:id/watch_while_time_bar_view"]').click();
-   await expect('//android.view.ViewGroup[@resource-id="com.google.android.youtube:id/watch_while_time_bar_view"]').toBeClickable()
+
+    it('should click on video screen', async () => {
+        await $(YouTubeLocators.videoScreen).click();
+        await expect($(YouTubeLocators.videoScreen)).toBeClickable();
     });
 
     it('should click on pause', async () => {
-  await $('//android.widget.ImageView[@content-desc="Pause video"]').click();
-   await expect('//android.widget.ImageView[@content-desc="Pause video"]').toBeClickable()
+        await $(YouTubeLocators.pauseButton).click();
+        await expect($(YouTubeLocators.pauseButton)).toBeClickable();
     });
 
     it('should continue the video', async () => {
-  await $('//android.widget.ImageView[@content-desc="Play video"]').click();
-   await expect('//android.widget.ImageView[@content-desc="Play video"]').toBeClickable()
-    
+        await $(YouTubeLocators.playButton).click();
+        await expect($(YouTubeLocators.playButton)).toBeClickable();
     });
 
-    
 });
