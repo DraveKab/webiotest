@@ -6,38 +6,37 @@ describe('WebdriverIO and Appium, when interacting with youtube,', () => {
 
     it('should be youtube', async () => {
         await $(YouTubeLocators.searchIcon).click();
-        await expect($(YouTubeLocators.searchIcon)).toBeClickable();
+         expect($(YouTubeLocators.searchIcon)).toBeClickable();
     });
 
     it('should type 4eve into search box', async () => {
         await $(YouTubeLocators.searchInput).addValue('4eve situationship');
-        await expect($(YouTubeLocators.searchInput)).toHaveText('4eve');
+         expect($(YouTubeLocators.searchInput)).toHaveValue('4eve');
     });
 
     it('should click on 4eve keyword', async () => {
         await $(YouTubeLocators.firstKeywordResult).click();
-        await expect($(YouTubeLocators.firstKeywordResult)).toBeClickable();
+         expect($(YouTubeLocators.firstKeywordResult)).toBeClickable();
     });
 
     it('should click on video thumbnail', async () => {
         await $(YouTubeLocators.firstVideoThumbnail).click();
-        await expect($(YouTubeLocators.firstVideoThumbnail)).toBeClickable();
-        await browser.pause(15000);
+         expect($(YouTubeLocators.firstVideoThumbnail)).toBeClickable();
     });
 
     it('should click on video screen', async () => {
         await $(YouTubeLocators.videoScreen).click();
-        await expect($(YouTubeLocators.videoScreen)).toBeClickable();
+         expect($(YouTubeLocators.videoScreen)).toBeClickable();
     });
 
     it('should click on pause', async () => {
-        await $(YouTubeLocators.pauseButton).click();
-        await expect($(YouTubeLocators.pauseButton)).toBeClickable();
+         $(YouTubeLocators.pauseButton).click();
+         expect($(YouTubeLocators.pauseButton)).toBeClickable();
     });
 
     it('should continue the video', async () => {
-        await $(YouTubeLocators.playButton).click();
-        await expect($(YouTubeLocators.playButton)).toBeClickable();
+         $(YouTubeLocators.playButton).click();
+         expect($(YouTubeLocators.playButton)).toBeClickable();
     });
 
 });
