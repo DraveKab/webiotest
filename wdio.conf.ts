@@ -1,4 +1,6 @@
+import { config as envConfig } from './tests/specs/config/env';
 export const config: WebdriverIO.Config = {
+    
     //
     // ====================
     // Runner Configuration
@@ -55,15 +57,15 @@ export const config: WebdriverIO.Config = {
     //
     capabilities: [{
         // capabilities for local Appium web tests on an Android Emulator
-        'appium:platformName': 'Android',
-        'appium:deviceName': 'emulator-5554',
-        'appium:platformVersion': '16.0',
-        'appium:automationName': 'UIAutomator2',
-        'appium:appPackage': 'com.google.android.youtube',
-        'appium:appActivity': 'com.google.android.youtube.HomeActivity',
-        'appium:appWaitActivity': '*',
-        'appium:newCommandTimeout': 600,
-        'appium:noReset': true
+        'appium:platformName': envConfig.PLATFORM_NAME,
+      'appium:deviceName': envConfig.DEVICE_NAME,
+      'appium:platformVersion': envConfig.PLATFORM_VERSION,
+      'appium:automationName': envConfig.AUTOMATION_NAME,
+      'appium:appPackage': envConfig.APP_PACKAGE,
+      'appium:appActivity': envConfig.APP_ACTIVITY,
+      'appium:appWaitActivity': envConfig.APP_WAIT_ACTIVITY,
+      'appium:newCommandTimeout': envConfig.NEW_COMMAND_TIMEOUT,
+      'appium:noReset': envConfig.NO_RESET,
     }],
 
     //
