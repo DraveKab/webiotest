@@ -38,7 +38,7 @@ describe('YouTube search and play flow', () => {
     const pauseBtn = await $<WebdriverIO.Element>(locator.youtube.pause_button);
 await pauseBtn.waitForDisplayed({
       timeout: 5000,
-      timeoutMsg: 'Expected pause button to be visible'
+      timeoutMsg: 'Expected play button to be visible'
         });
     await ytp.verifyPlayButtonVisible(); // ytp.verify...
   });
