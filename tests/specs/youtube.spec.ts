@@ -32,7 +32,7 @@ describe('YouTube search and play flow', () => {
       timeout: 5000,
       timeoutMsg: 'Expected pause button to be visible'
         });
-    expect(await $(locator.youtube.play_button)).toBeDisplayed(); // ytp.verify...
+    await ytp.verifyPlayButtonVisible();// ytp.verify...
 
     await ytp.playVideo();
     const pauseBtn = await $<WebdriverIO.Element>(locator.youtube.pause_button);
@@ -40,7 +40,7 @@ await pauseBtn.waitForDisplayed({
       timeout: 5000,
       timeoutMsg: 'Expected pause button to be visible'
         });
-    expect(await $(locator.youtube.pause_button)).toBeDisplayed(); // ytp.verify...
+    await ytp.verifyPlayButtonVisible(); // ytp.verify...
   });
 
 });

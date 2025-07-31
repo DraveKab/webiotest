@@ -45,11 +45,22 @@ export class YouTubePlayerPage {
     await $(locator.youtube.play_button).click();
   }
 
-  async verifyPauseButtonIsVisible() {
-    await expect($(locator.youtube.pause_button)).toBeDisplayed();
-  }
+  async verifyPlayButtonVisible() {
+  const playBtn = await $<WebdriverIO.Element>(locator.youtube.play_button);
+  await playBtn.waitForDisplayed({
+    timeout: 5000,
+    timeoutMsg: 'Expected play button to be visible after pausing',
+  });
+  expect(playBtn).toBeDisplayed();
+}
 
-  async verifyPlayButtonIsVisible() {
-    await expect($(locator.youtube.play_button)).toBeDisplayed();
-  }
+async verifyPauseButtonVisible() {
+  const pauseBtn = await $<WebdriverIO.Element>(locator.youtube.pause_button);
+  await pauseBtn.waitForDisplayed({
+    timeout: 5000,
+    timeoutMsg: 'Expected pause button to be visible after resuming',
+  });
+  expect(pauseBtn).toBeDisplayed();
+}
+
 }
