@@ -6,13 +6,13 @@ const ytp = new YouTubePlayerPage();
 
 describe('🎵 YouTube: ผู้ใช้ค้นหาเพลงและควบคุมการเล่นวิดีโอ', () => {
 
-  it('ผู้ใช้เปิด YouTube และค้นหาเพลง "4eve situationship"', async () => {
+  it('it should search a song', async () => {
     await yt.clickSearchIcon(); // ผู้ใช้กดไอคอนค้นหา
     await yt.typeInSearchInput('4eve situationship'); // พิมพ์ชื่อเพลง
     await yt.clickFirstKeywordResult(); // เลือกคำแนะนำอันแรก
   });
 
-  it('ระบบเปิดวิดีโอแรกจากผลลัพธ์การค้นหา', async () => {
+  it('should open the first video result', async () => {
     await yt.clickFirstVideoThumbnail(); // คลิกวิดีโอแรก
     await ytp.skipButtonToBeDisplayed(); // ข้ามโฆษณาหากมี
     await ytp.screenToBeDisplayed(); // รอให้หน้าจอวิดีโอโหลด
@@ -21,7 +21,7 @@ describe('🎵 YouTube: ผู้ใช้ค้นหาเพลงและ�
     await ytp.verifyPauseButtonVisible(); // ยืนยันว่า video เล่นอยู่
   });
 
-  it('ผู้ใช้กดหยุดวิดีโอ แล้วเล่นต่ออีกครั้ง', async () => {
+  it('should pause and resume the video', async () => {
     await ytp.pauseVideo(); // ผู้ใช้กด pause
     await ytp.verifyPlayButtonVisible(); // ยืนยันว่า video หยุดแล้ว
 
