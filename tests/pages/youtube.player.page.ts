@@ -30,7 +30,7 @@ export class YouTubePlayerPage {
   }
 }
 
-  async waitToBeDisplayed() {
+  async waitPauseButtonToBeDisplayed() {
     const pauseBtn = await $<WebdriverIO.Element>(locator.youtube.pause_button);
     await pauseBtn.waitForDisplayed({
       timeout: 40000,
