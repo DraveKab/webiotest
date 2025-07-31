@@ -1,34 +1,46 @@
 import { expect } from 'expect-webdriverio';
-import { YouTubePage } from '../pages/youtube.page';
-import { YouTubeLocators } from './locator';
+import { YouTubeHomePage } from '../pages/youtube.page';
+import { YouTubePlayerPage } from '../pages/youtube.player.page';
+import * as locator from '../specs/locator';
 
-const yt = new YouTubePage();
+const yt = new YouTubeHomePage();
+const ytp = new YouTubePlayerPage();
 
 describe('YouTube search and play flow', () => {
 
   it('should search for a song', async () => {
     await yt.clickSearchIcon();
-    await yt.typeInSearchBox('4eve situationship');
+    await yt.typeInSearchInput('4eve situationship');
     await yt.clickFirstKeywordResult();
   });
 
   it('should open the first video result', async () => {
     await yt.clickFirstVideoThumbnail();
-    await browser.pause(3000); // wait for video to load
-    await yt.clickVideoScreen(); // show controls
+    await ytp.skipButtonToBeDisplayed();
+    await ytp.screenToBeDisplayed();
+    await ytp.clickVideoScreen(); // show controls first
+    await ytp.waitToBeDisplayed(); // wait for pause button
 
     // ✅ Validate: ปุ่ม pause ต้องแสดง → แปลว่า video กำลังเล่น
-    expect(await $(YouTubeLocators.pause_button)).toBeDisplayed();
+    expect(await $(locator.youtube.pause_button)).toBeDisplayed();
   });
 
   it('should pause and resume the video', async () => {
-    await yt.pauseVideo();
-    await browser.pause(1000);
-    expect(await $(YouTubeLocators.play_button)).toBeDisplayed();
+    await ytp.pauseVideo();
+    const playBtn = await $<WebdriverIO.Element>(locator.youtube.play_button);
+      await playBtn.waitForDisplayed({
+      timeout: 5000,
+      timeoutMsg: 'Expected pause button to be visible'
+        });
+    expect(await $(locator.youtube.play_button)).toBeDisplayed(); // ytp.verify...
 
-    await yt.playVideo();
-    await browser.pause(1000);
-    expect(await $(YouTubeLocators.pause_button)).toBeDisplayed();
+    await ytp.playVideo();
+    const pauseBtn = await $<WebdriverIO.Element>(locator.youtube.pause_button);
+await pauseBtn.waitForDisplayed({
+      timeout: 5000,
+      timeoutMsg: 'Expected pause button to be visible'
+        });
+    expect(await $(locator.youtube.pause_button)).toBeDisplayed(); // ytp.verify...
   });
 
 });

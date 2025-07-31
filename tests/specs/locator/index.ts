@@ -1,1 +1,1 @@
-export * from './youtube.locator';
+export * from './youtube.locator.ts';

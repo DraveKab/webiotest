@@ -1,41 +1,22 @@
-import { YouTubeLocators } from '../specs/locator/youtube.locator';
-import { expect } from 'expect-webdriverio';
+import * as locator from '../specs/locator';
 
-export class YouTubePage {
+export class YouTubeHomePage {
+  typeInSearchBox(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   async clickSearchIcon() {
-    await $(YouTubeLocators.search_icon).click();
+    await $(locator.youtube.search_icon).click();
   }
 
-  async typeInSearchBox(keyword: string) {
-    await $(YouTubeLocators.search_input).addValue(keyword);
+  async typeInSearchInput(text: string) {
+    await $(locator.youtube.search_input).addValue(text);
   }
 
   async clickFirstKeywordResult() {
-    await $(YouTubeLocators.first_keyword_result).click();
+    await $(locator.youtube.first_keyword_result).click();
   }
 
   async clickFirstVideoThumbnail() {
-    await $(YouTubeLocators.first_video_thumbnail).click();
-  }
-
-  async clickVideoScreen() {
-    await $(YouTubeLocators.video_screen).click();
-  }
-
-  async pauseVideo() {
-    await $(YouTubeLocators.pause_button).click();
-  }
-
-  async playVideo() {
-    await $(YouTubeLocators.play_button).click();
-  }
-
-  // ✅ Validate methods
-  async expectPauseButtonVisible() {
-    await expect($(YouTubeLocators.pause_button)).toBeDisplayed();
-  }
-
-  async expectPlayButtonVisible() {
-    await expect($(YouTubeLocators.play_button)).toBeDisplayed();
+    await $(locator.youtube.first_video_thumbnail).click();
   }
 }
