@@ -6,5 +6,6 @@ export const youtube = {
   skip_button: '//android.widget.TextView[@resource-id="com.google.android.youtube:id/skip_ad_button_text"]' ,
   video_screen: '//android.view.ViewGroup[@resource-id="com.google.android.youtube:id/watch_while_time_bar_view"]',
   pause_button: '//android.widget.ImageView[@content-desc="Pause video"]',
-  play_button: '//android.widget.ImageView[@content-desc="Play video"]'
+  play_button: '//android.widget.ImageView[@content-desc="Play video"]',
+  currenttime_bar: '//android.widget.TextView[@resource-id="com.google.android.youtube:id/time_bar_current_time"]',
 };

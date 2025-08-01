@@ -5,7 +5,7 @@ export class YouTubePlayerPage {
   async clickVideoScreen() {
     await $(locator.youtube.video_screen).click();
   }
-  async screenToBeDisplayed() {
+  async waitScreenToBeDisplayed() {
     const screenplay = await $<WebdriverIO.Element>(locator.youtube.video_screen);
     await screenplay.waitForDisplayed({
       timeout: 40000,
@@ -62,5 +62,24 @@ async verifyPauseButtonVisible() {
   });
   expect(pauseBtn).toBeDisplayed();
 }
+ async waitForTimestampToChange(timeout = 10000) {
+  const timestampElem = await $<WebdriverIO.Element>(locator.youtube.currenttime_bar);
+
+  const initialTime = await timestampElem.getText();
+
+  await browser.waitUntil(
+    async () => {
+      const currentTime = await timestampElem.getText();
+      return currentTime !== initialTime;
+    },
+    timeout, // ✅ positional arg #2
+    `Expected timestamp to change from "${initialTime}"` // ✅ positional arg #3
+  );
+
+  const newTime = await timestampElem.getText();
+  expect(newTime).not.toBe(initialTime);
+}
+  
+
 
 }
